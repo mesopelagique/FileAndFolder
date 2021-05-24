@@ -72,3 +72,58 @@ ON ERR CALL:C155("")
 
 ASSERT:C1129($handleAgain=Null:C1517; "must not open two times")
 $handle.close()  // must close
+
+
+////////////////////////
+// test read all
+////////////////////////
+$handle:=$file.open("r")  // will open to append
+
+If (Asserted:C1132($handle#Null:C1517; "cannot open"))
+	ON ERR CALL:C155("try")
+	$data:=$handle.read(100)
+	
+	ON ERR CALL:C155("")
+	$handle.close()  // must close
+	
+	ASSERT:C1129($data="testtesttesttesttesttesttesttest")
+	
+End if 
+
+////////////////////////
+// test read part
+////////////////////////
+$handle:=$file.open("r")  // will open to append
+
+If (Asserted:C1132($handle#Null:C1517; "cannot open"))
+	ON ERR CALL:C155("try")
+	$data:=$handle.read(1)
+	
+	ON ERR CALL:C155("")
+	$handle.close()  // must close
+	
+	ASSERT:C1129($data="t")
+	
+End if 
+
+////////////////////////
+// test read until
+////////////////////////
+$handle:=$file.open("r")  // will open to append
+
+If (Asserted:C1132($handle#Null:C1517; "cannot open"))
+	ON ERR CALL:C155("try")
+	$data:=$handle.readUntil("s")
+	ON ERR CALL:C155("")
+	
+	ASSERT:C1129($data="te")
+	
+	ON ERR CALL:C155("try")
+	$data:=$handle.readUntil("s")
+	ON ERR CALL:C155("")
+	
+	ASSERT:C1129($data="tte")
+	
+	$handle.close()  // must close
+	
+End if 

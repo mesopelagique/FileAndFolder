@@ -31,3 +31,9 @@ Function write($value : Variant)
 		Else 
 			SEND PACKET:C103(Time:C179(This:C1470.wrapped); String:C10($value))  // try in last resort, could work for number
 	End case 
+	
+Function read($numBytes : Integer)->$text : Text
+	RECEIVE PACKET:C104(Time:C179(This:C1470.wrapped); $text; $numBytes)
+	
+Function readUntil($stopChar : Text)->$text : Text
+	RECEIVE PACKET:C104(Time:C179(This:C1470.wrapped); $text; $stopChar)
