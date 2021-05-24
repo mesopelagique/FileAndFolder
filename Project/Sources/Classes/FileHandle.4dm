@@ -6,6 +6,9 @@ Class constructor($docRef : Time)
 Function wrappedTime()->$docRef:=Time  // 4d cannot store time, so cannot use This.wrapped
 	$docRef:=Time:C179(This:C1470.wrapped)
 	
+Function getPosition()->$offset : Real
+	$offset:=Get document position:C481
+	
 Function setPosition($offset : Real; $anchor : Integer)
 	If (Count parameters:C259>1)
 		SET DOCUMENT POSITION:C482(Time:C179(This:C1470.wrapped); $offset; $anchor)
@@ -37,3 +40,6 @@ Function read($numBytes : Integer)->$text : Text
 	
 Function readUntil($stopChar : Text)->$text : Text
 	RECEIVE PACKET:C104(Time:C179(This:C1470.wrapped); $text; $stopChar)
+	
+Function readLine()->$text : Text
+	RECEIVE PACKET:C104(Time:C179(This:C1470.wrapped); $text; "\r")  // TODO choose line delimiter!

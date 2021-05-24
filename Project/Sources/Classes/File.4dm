@@ -12,6 +12,9 @@ Function getContent()->$blob : Blob
 Function getText()->$text : Text
 	$text:=This:C1470.wrapped.getText()
 	
+Function setText($text : Text)
+	This:C1470.wrapped.setText($text)
+	
 Function getObject()->$object : Object
 	$object:=JSON Parse:C1218(This:C1470.wrapped.getText())
 	
