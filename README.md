@@ -2,6 +2,8 @@
 
  Just proxy/adapter classes to 4D File and Folder
 
+⚠️ could be completed with this https://github.com/mesopelagique/GetSetWrappers/blob/master/Project/Sources/Classes/File.4dm
+
 ## Handle
 
 Read files
